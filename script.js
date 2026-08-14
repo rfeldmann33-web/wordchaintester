@@ -23,7 +23,7 @@ fetch("word.txt")
       "Dictionary failed to load.";
   });
 
-/* ===== WORD CHAIN LOGIC (FULL FIXED VERSION) ===== */
+/* ===== WORD CHAIN LOGIC (FINAL VERSION) ===== */
 
 function generateNeighbors(word) {
   const neighbors = [];
@@ -40,7 +40,6 @@ function generateNeighbors(word) {
   return neighbors;
 }
 
-// Bidirectional BFS (fastest possible)
 function findShortestChain(start, end, margin) {
   const MAX_LENGTH = 18;
 
@@ -52,7 +51,7 @@ function findShortestChain(start, end, margin) {
 
   while (queueStart.length > 0 && queueEnd.length > 0) {
 
-    // Expand from START side
+    /* ===== Expand from START side ===== */
     const [wordS, pathS, fakeS] = queueStart.shift();
 
     if (pathS.length > MAX_LENGTH) break;
@@ -62,7 +61,7 @@ function findShortestChain(start, end, margin) {
       const newFake = isReal ? fakeS : fakeS + 1;
       if (newFake > margin) continue;
 
-      const key = next.toLowerCase();
+      const key = next;
       if (!visitedStart.has(key)) {
         visitedStart.set(key, { path: [...pathS, next], fake: newFake });
         queueStart.push([next, [...pathS, next], newFake]);
@@ -75,7 +74,7 @@ function findShortestChain(start, end, margin) {
       }
     }
 
-    // Expand from END side
+    /* ===== Expand from END side ===== */
     const [wordE, pathE, fakeE] = queueEnd.shift();
 
     if (pathE.length > MAX_LENGTH) break;
@@ -85,7 +84,7 @@ function findShortestChain(start, end, margin) {
       const newFake = isReal ? fakeE : fakeE + 1;
       if (newFake > margin) continue;
 
-      const key = next.toLowerCase();
+      const key = next;
       if (!visitedEnd.has(key)) {
         visitedEnd.set(key, { path: [...pathE, next], fake: newFake });
         queueEnd.push([next, [...pathE, next], newFake]);

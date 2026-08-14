@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Word Chain Tester</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="logo-box">
+  <img src="logo.png" alt="Logo">
+</div>
+
+<div class="site-title">
+  Word Chain Tester
+</div>
+
+<div class="made-by">
+  Made by Creation Education Fun
+</div>
+
+<div class="container">
+
+  <div class="input-group">
+    <label for="startWord">Start Word</label>
+    <input id="startWord" type="text" placeholder="Type a word...">
+  </div>
+
+  <div class="input-group">
+    <label for="endWord">End Word</label>
+    <input id="endWord" type="text" placeholder="Type a word...">
+  </div>
+
+  <div class="input-group">
+    <label for="margin">Margin of Error: <span id="marginValue">0</span></label>
+    <input id="margin" type="range" min="0" max="5" value="0" oninput="updateMarginValue()">
+  </div>
+
+  <button class="solve-btn" onclick="findChain()">Find Chain</button>
+
+  <div id="result" class="result-box"></div>
+
+  <div id="dictStatus" class="result-box"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
